@@ -1,3 +1,10 @@
 from .medicoCreateView import MedicoCreateView
 from .medicoDetailView import MedicoDetailView
-
+from .enfermeroCreateView import EnfermeroCreateView
+from .enfermeroDetailView import EnfermeroDetailView
+from .familiarCreateView import FamiliarCreateView
+from .familiarDetailView import FamiliarDetailView
+from .historiaClinicaCreateView import HistoriaClinicaCreateView
+from .historiaClinicaDetailView import HistoriaClinicaDetailView
+from .pacienteCreateView import PacienteCreateView
+from .pacienteDetailView import PacienteDetailView

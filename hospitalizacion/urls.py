@@ -22,5 +22,12 @@ urlpatterns = [
     path('refresh/', TokenRefreshView.as_view()),
     path('medico/', views.MedicoCreateView.as_view()),
     path('medico/<int:pk>/', views.MedicoDetailView.as_view()),
-    
+    path('enfermero/', views.EnfermeroCreateView.as_view()),
+    path('enfermero/<int:pk>/', views.EnfermeroDetailView.as_view()),
+    path('familiar/', views.FamiliarCreateView.as_view()),
+    path('familiar/<int:pk>/', views.FamiliarDetailView.as_view()),
+    path('historiaClinica/', views.HistoriaClinicaCreateView.as_view()),
+    path('historiaClinica/<int:pk>/', views.HistoriaClinicaDetailView.as_view()),
+    path('paciente/', views.PacienteCreateView.as_view()),
+    path('paciente/<int:pk>/', views.PacienteDetailView.as_view()),
 ]

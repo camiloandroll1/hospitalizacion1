@@ -1,26 +1,27 @@
-from rest_framework import serializers
 from authApp.models.user import User
-from authApp.models.medico import Medico
+from authApp.models.enfermero import Enfermero
+from rest_framework import serializers
 
+class EnfermeroSerializer(serializers.ModelSerializer):
+    area = serializers.CharField(max_length = 30)
+    role = serializers.IntegerField(default=2)
 
-class MedicoSerializer(serializers.ModelSerializer):
-    especialidad = serializers.CharField(max_length = 30)
-    role = serializers.IntegerField(default=1)
-    
     class Meta:
         model = User
-        fields = ['id', 'username', 'password', 'nombre', 'apellido','celular','direccion','email','role','especialidad']
-    
+        fields = ['id', 'username', 'password', 'nombre', 'apellido','celular','direccion','email','role','area']
+   
+   
+   
     def create(self, validated_data):
-        especialidadData = validated_data.pop('especialidad')
-        validated_data['role'] = 1
+        areaData = validated_data.pop('area')
+        validated_data['role'] = 2
         userInstance = User.objects.create(**validated_data)
-        Medico.objects.create(user=userInstance, especialidad=especialidadData)
+        Enfermero.objects.create(user=userInstance, area=areaData)
         return userInstance
 
     def to_representation(self, obj):
         user = User.objects.get(id=obj.id)
-        medico = Medico.objects.get(user=obj.id)
+        enfermero = Enfermero.objects.get(user=obj.id)       
         
         return {
                     'id': user.id,
@@ -31,6 +32,6 @@ class MedicoSerializer(serializers.ModelSerializer):
                     'direccion': user.direccion,
                     'email': user.email,
                     'role': user.role,
-                    'especialidad': medico.especialidad
+                    'area': enfermero.area
                     
                 }
